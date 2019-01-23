@@ -82,7 +82,9 @@ public class profileFragment extends Fragment {
 
                 RequestOptions placeholderOption = new RequestOptions();
                 placeholderOption.placeholder(R.mipmap.default_pic);
-                Glide.with(container.getContext()).setDefaultRequestOptions(placeholderOption).load(uri).into(mProfileImage);
+                Glide.with(container.getContext())
+                        .setDefaultRequestOptions(placeholderOption)
+                        .load(uri).into(mProfileImage);
 
 
             }
