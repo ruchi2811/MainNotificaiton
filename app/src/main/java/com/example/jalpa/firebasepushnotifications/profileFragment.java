@@ -76,14 +76,14 @@ public class profileFragment extends Fragment {
 
 
 
-        FirebaseStorage.getInstance().getReference().child("images/" + mUserId + ".jpg ").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        FirebaseStorage.getInstance().getReference().child("images").child(mUserId + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
 
                 RequestOptions placeholderOption = new RequestOptions();
                 placeholderOption.placeholder(R.mipmap.default_pic);
-                //Glide.with(container.getContext()).setDefaultRequestOptions(placeholderOption).load(uri).into(mProfileImage);
                 Glide.with(container.getContext()).setDefaultRequestOptions(placeholderOption).load(uri).into(mProfileImage);
+
 
             }
         }).addOnFailureListener(new OnFailureListener() {
