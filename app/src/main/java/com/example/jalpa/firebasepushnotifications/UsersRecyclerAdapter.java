@@ -48,12 +48,15 @@ public class UsersRecyclerAdapter extends RecyclerView.Adapter<UsersRecyclerAdap
        //Glide.with(context).load(R.drawable.ruchi).into(user_image_view);
 
         final String user_id = usersList.get(position).userId;
+        final String user_name = usersList.get(position).getName();
+
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent sendIntent = new Intent(context, SendActivity.class);
                 sendIntent.putExtra("user_id", user_id);
+                sendIntent.putExtra("user_name",user_name);
                 context.startActivity(sendIntent);
             }
         });

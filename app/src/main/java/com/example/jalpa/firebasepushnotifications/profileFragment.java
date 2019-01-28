@@ -134,7 +134,7 @@ public class profileFragment extends Fragment {
 
                                              }
                                              catch (Exception e){
-                                                 Toast.makeText(getActivity(), "Error in Sign out!", Toast.LENGTH_SHORT).show();
+                                                 Toast.makeText(getActivity(), "Error in Sign out!" + e, Toast.LENGTH_SHORT).show();
 
                                              }
 

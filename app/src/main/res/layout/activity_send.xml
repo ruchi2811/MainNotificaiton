@@ -18,16 +18,19 @@
         android:textSize="18sp" />
 
     <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
+        android:id="@+id/message_view"
+        android:layout_width="342dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="141dp"
-        android:layout_marginRight="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="34dp"
+        android:layout_marginLeft="34dp"
+        android:layout_marginTop="142dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginRight="35dp"
         android:background="@drawable/input_plan_background"
         android:ems="10"
         android:fontFamily="@font/nunito_semibold"
@@ -41,7 +44,7 @@
         android:textSize="18sp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/send_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -50,9 +53,17 @@
         android:layout_marginTop="201dp"
         android:background="@drawable/primary_color_btn"
         android:fontFamily="@font/nunito_semibold"
-        android:padding="15dp"
+        android:padding="10dp"
         android:text="Send Notification"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="18dp" />
+
+    <ProgressBar
+        android:id="@+id/messageProgress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="invisible" />
 </RelativeLayout>
