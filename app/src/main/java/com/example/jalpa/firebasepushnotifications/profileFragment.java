@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.example.jalpa.firebasepushnotifications.R.id.logout_btn;
 import static com.example.jalpa.firebasepushnotifications.R.id.profile_image;
+//import static com.firebase.ui.auth.AuthUI.TAG;
 
 
 /**
@@ -122,14 +124,25 @@ public class profileFragment extends Fragment {
 
         mLogoutBtn.setOnClickListener(new View.OnClickListener(){
 
-                                          @Override
-                                          public void onClick(View v) {
-                                              mAuth.signOut();
-                                              Intent loginIntent = new Intent(getContext(), LoginActivity.class);
-                                              startActivity(loginIntent);
+                                         @Override
+                                         public void onClick(View v) {
+                                             try {
+                                                 mAuth.signOut();
+                                                 Intent loginIntent = new Intent(getContext(), LoginActivity.class);
+                                                 startActivity(loginIntent);
+                                                 Toast.makeText(getActivity(), "User Sign out!", Toast.LENGTH_SHORT).show();
+
+                                             }
+                                             catch (Exception e){
+                                                 Toast.makeText(getActivity(), "Error in Sign out!", Toast.LENGTH_SHORT).show();
+
+                                             }
+
                                           }
-                                      }
-        );
+                                     }
+       );
+
+
         return view;
     }
 
