@@ -30,6 +30,7 @@ public class SendActivity extends AppCompatActivity {
     private Button mSendBtn;
     private String mUserName;
     private ProgressBar mMessageProgress;
+    private FirebaseAuth mAuth;
 
     private FirebaseFirestore mFirestore;
 
@@ -45,11 +46,14 @@ public class SendActivity extends AppCompatActivity {
         mFirestore = FirebaseFirestore.getInstance();
         mCurrentId = FirebaseAuth.getInstance().getUid();
         mMessageProgress = (ProgressBar) findViewById(R.id.messageProgress);
+        mAuth = FirebaseAuth.getInstance();
 
-        mUserId = getIntent().getStringExtra("user_id");
+
+        //mUserId = getIntent().getStringExtra("user_id");
         mUserName = getIntent().getStringExtra("user_name");
 
         user_id_view.setText("Send to " + mUserName);
+        final String user_id = mAuth.getCurrentUser().getUid();
 
         mSendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,22 +61,19 @@ public class SendActivity extends AppCompatActivity {
                 String message = mMessageView.getText().toString();
 
 
-                //if (!message.isEmpty())
-                try{
+                if (!message.isEmpty()){
 
                     mMessageProgress.setVisibility(View.VISIBLE);
-                    Toast.makeText(SendActivity.this , "Send button working." , Toast.LENGTH_LONG).show();
 
 
                     Map<String , Object> notificationMessage = new HashMap<>();
                     notificationMessage.put("message" , message);
                     notificationMessage.put("from" , mCurrentId);
 
-                    mFirestore.collection("Users/" + mUserId + "/Notifications").add(notificationMessage).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    mFirestore.collection("Users/" + user_id + "/Notifications").add(notificationMessage).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
-                            Toast.makeText(SendActivity.this , "Notification Sent." , Toast.LENGTH_LONG).show();
-                            Toast.makeText(SendActivity.this , "Notification Sent to... " + mUserId , Toast.LENGTH_LONG).show();
+                            Toast.makeText(SendActivity.this , "Notification Sent to... " + user_id , Toast.LENGTH_LONG).show();
 
                             mMessageView.setText("");
                             mMessageProgress.setVisibility(View.INVISIBLE);
@@ -89,9 +90,9 @@ public class SendActivity extends AppCompatActivity {
 
 
                 }
-                catch (Exception e){
+                else{
 
-                    Toast.makeText(SendActivity.this , "Else portion."  + e , Toast.LENGTH_LONG).show();
+                    Toast.makeText(SendActivity.this , "Else portion." , Toast.LENGTH_LONG).show();
 
                 }
 
